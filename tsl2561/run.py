@@ -2,9 +2,9 @@ import json
 import logging
 import logging.handlers
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
-from .tsl2561 import read_data
+import tsl2561
 
 
 def main():
@@ -26,8 +26,8 @@ def main():
 
     logger.addHandler(trh)
 
-    data = read_data()
-    data["@timestamp"] = datetime.now().isoformat()
+    data = tsl2561.read_data()
+    data["@timestamp"] = datetime.now(timezone.utc).astimezone().isoformat()
     logger.info(json.dumps(data))
 
 

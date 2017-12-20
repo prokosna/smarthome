@@ -2,9 +2,9 @@ import json
 import logging
 import logging.handlers
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
-from .bme280 import read_data
+import bme280
 
 
 def main():
@@ -26,8 +26,8 @@ def main():
 
     logger.addHandler(trh)
 
-    data = read_data()
-    data["@timestamp"] = datetime.now().isoformat()
+    data = bme280.read_data()
+    data["@timestamp"] = datetime.now(timezone.utc).astimezone().isoformat()
     logger.info(json.dumps(data))
 
 
