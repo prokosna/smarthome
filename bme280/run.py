@@ -4,7 +4,7 @@ import logging.handlers
 import os
 from datetime import datetime, timezone
 
-import bme280
+import sensor
 
 
 def main():
@@ -26,7 +26,7 @@ def main():
 
     logger.addHandler(trh)
 
-    data = bme280.read_data()
+    data = sensor.read_data()
     data["@timestamp"] = datetime.now(timezone.utc).astimezone().isoformat()
     logger.info(json.dumps(data))
 
