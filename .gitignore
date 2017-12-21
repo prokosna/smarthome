@@ -1,4 +1,8 @@
 .idea
-*/records/*
 __pycache__
 *.pyc
+*.pos
+records/
+!records/.gitkeep
+buffers/
+!buffers/.gitkeep

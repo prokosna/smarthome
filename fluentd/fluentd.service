@@ -1,0 +1,12 @@
+[Unit]
+Description=fluentd service
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/fluentd -c /home/prokosna/smarthome/fluentd/fluent.conf -d /run/fluentd.pid
+PIDFile=/run/fluentd.pid
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
